@@ -1,0 +1,26 @@
+fastapi                    
+uvicorn                    
+
+# AWS S3 Integration
+boto3                       
+watchdog                    
+
+# File Handling & Security
+python-multipart          
+pydantic                   
+
+# Facial Recognition (If Needed Later)
+opencv-python-headless       
+face-recognition             
+dlib                         
+
+# Database (Optional)
+pymongo                      
+sqlalchemy                  
+
+# QR Code Handling (Optional)
+qrcode                      
+
+# Development & Debugging
+python-dotenv                
+loguru                      
