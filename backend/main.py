@@ -8,7 +8,7 @@ from backend.routes import upload_route
 
 app = FastAPI()
 
-app.include_router(upload_routes.router)  # Ensure the variable name is correct
+app.include_router(upload_route.router)  # Ensure the variable name is correct
 
 if __name__ == "__main__":
     import uvicorn
