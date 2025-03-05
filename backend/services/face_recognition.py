@@ -1,20 +1,25 @@
-import face_recognition
+from deepface import DeepFace
 
 def get_face_encoding(image_path):
     """
-    Loads an image from the given path and returns its face encoding.
+    Extracts facial embeddings using DeepFace.
     Returns None if no face is found.
     """
-    image = face_recognition.load_image_file(image_path)
-    encodings = face_recognition.face_encodings(image)
-    if encodings:
-        return encodings[0]
-    else:
+    try:
+        embedding = DeepFace.represent(img_path=image_path, model_name="Facenet", enforce_detection=False)
+        return embedding[0]["embedding"] if embedding else None
+    except Exception as e:
+        print(f"Error processing {image_path}: {e}")
         return None
 
-def compare_faces(user_encoding, photo_encoding, tolerance=0.6):
+def compare_faces(user_encoding, photo_encoding, threshold=0.6):
     """
-    Compares two face encodings. Returns True if they match within the specified tolerance.
+    Compares two face encodings using DeepFace's cosine similarity.
+    Returns True if they match.
     """
-    results = face_recognition.compare_faces([user_encoding], photo_encoding, tolerance=tolerance)
-    return results[0]
+    try:
+        result = DeepFace.verify(img1_path=user_encoding, img2_path=photo_encoding, model_name="Facenet", enforce_detection=False)
+        return result["distance"] < threshold  # Returns True if the distance is below the threshold
+    except Exception as e:
+        print(f"Error comparing faces: {e}")
+        return False

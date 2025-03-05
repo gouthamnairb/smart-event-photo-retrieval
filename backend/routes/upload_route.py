@@ -2,8 +2,8 @@ from fastapi import APIRouter, File, UploadFile
 import os
 import shutil
 from backend.config import USER_UPLOADS_DIR
-from backend.services.face_recognition_service import get_face_encoding, compare_faces
-from backend.services.file_storage_service import list_event_photos
+from backend.services.face_recognition import get_face_encoding, compare_faces
+from backend.services.file_storage import list_event_photos
 
 router = APIRouter()
 
