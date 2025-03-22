@@ -1,4 +1,5 @@
 from deepface import DeepFace
+import numpy as np
 
 def get_face_encoding(image_path):
     """
@@ -14,12 +15,25 @@ def get_face_encoding(image_path):
 
 def compare_faces(user_encoding, photo_encoding, threshold=0.6):
     """
-    Compares two face encodings using DeepFace's cosine similarity.
-    Returns True if they match.
+    Compares two face encodings using cosine similarity.
+    Returns True if they match (similarity score is above the threshold).
     """
     try:
-        result = DeepFace.verify(img1_path=user_encoding, img2_path=photo_encoding, model_name="Facenet", enforce_detection=False)
-        return result["distance"] < threshold  # Returns True if the distance is below the threshold
+        # Convert embeddings to numpy arrays if they're not already
+        if isinstance(user_encoding, list):
+            user_encoding = np.array(user_encoding)
+        if isinstance(photo_encoding, list):
+            photo_encoding = np.array(photo_encoding)
+        
+        # Calculate cosine similarity
+        dot_product = np.dot(user_encoding, photo_encoding)
+        norm_user = np.linalg.norm(user_encoding)
+        norm_photo = np.linalg.norm(photo_encoding)
+        
+        similarity = dot_product / (norm_user * norm_photo)
+        
+        # Higher similarity means more similar faces
+        return similarity > threshold
     except Exception as e:
         print(f"Error comparing faces: {e}")
         return False
