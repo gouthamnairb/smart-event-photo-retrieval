@@ -1,5 +1,14 @@
 import os
-from backend.config import EVENT_PHOTOS_DIR
+import sys
+
+# Get the directory where this script is located
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# Get the parent directory (root of the project)
+root_dir = os.path.dirname(current_dir)
+# Add the root directory to the Python path
+sys.path.append(root_dir)
+
+from config import EVENT_PHOTOS_DIR
 
 def list_event_photos():
     """

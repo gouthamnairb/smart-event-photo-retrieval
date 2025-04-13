@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Event Photo Retrieval</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>PhotoFind</h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <div class="two-column-layout">
+                <section class="upload-section">
+                    <div class="upload-container">
+                        <h2>Find Your Photos</h2>
+                        <p>Upload a clear selfie to find all photos containing you</p>
+                        
+                        <div class="upload-area" id="dropzone">
+                            <div class="upload-prompt">
+                                <img src="{{ url_for('static', filename='images/upload-icon.svg') }}" alt="Upload" class="upload-icon">
+                                <p>Drag & drop your selfie here or</p>
+                                <label for="file-upload" class="custom-file-upload">
+                                    Choose a file
+                                </label>
+                                <input id="file-upload" type="file" accept="image/*" class="file-input">
+                            </div>
+                            <div class="upload-preview hidden">
+                                <img id="preview-image" src="#" alt="Preview">
+                                <button class="clear-btn" id="clear-upload">
+                                    <span class="btn-icon">×</span>
+                                    <span>Clear</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="primary-button" id="find-photos-btn" disabled>
+                            <span class="btn-text">Find My Photos</span>
+                            <span class="btn-icon">→</span>
+                        </button>
+                        
+                        <div class="instructions">
+                            <h3>How it works:</h3>
+                            <ol>
+                                <li>Upload a clear selfie with your face visible</li>
+                                <li>Our AI will analyze your facial features</li>
+                                <li>We'll find all event photos containing you</li>
+                                <li>Download the photos you like</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="results-section" id="results-section">
+                    <div class="results-header">
+                        <h3>Your Matching Photos</h3>
+                        <p class="result-count"><span id="photo-count">0</span> photos found</p>
+                    </div>
+                    
+                    <div class="loading-indicator hidden" id="loading-indicator">
+                        <div class="spinner"></div>
+                        <p>Searching for your photos...</p>
+                    </div>
+                    
+                    <div class="no-results hidden" id="no-results">
+                        <img src="{{ url_for('static', filename='images/no-results.svg') }}" alt="No results">
+                        <h4>No Matching Photos Found</h4>
+                        <p>Try uploading a different selfie with clearer facial features.</p>
+                    </div>
+                    
+                    <div class="photo-grid" id="photo-grid">
+                        <!-- Photos will be inserted here by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="app-footer">
+            <div class="copyright">
+                <p>&copy; 2025 PhotoFind. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 

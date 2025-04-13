@@ -1,2 +1,4 @@
 venv/
 event_photos/
+user_uploads/
+s3_bucket/

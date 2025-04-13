@@ -1,4 +1,0 @@
-fastapi
-uvicorn
-face_recognition
-python-multipart
