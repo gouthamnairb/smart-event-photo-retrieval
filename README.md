@@ -53,7 +53,7 @@ PhotoFind is an intelligent web application that helps users find photos of them
 1. **Clone the repository**
    ```bash
    git clone https://github.com/gouthamnairb/smart-event-photo-retrieval.git
-   cd photofind
+   cd smart-event-photo-retrieval
    ```
 
 2. **Create a virtual environment (recommended)**
